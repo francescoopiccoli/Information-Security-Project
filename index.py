@@ -1,0 +1,1 @@
+#checking vscode and git configuration
