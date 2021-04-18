@@ -1,3 +1,34 @@
-h1{
+h1 {
     color: green !important;
+    font-weight: bold;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}
+
+footer {
+    background-color: rgb(63, 63, 63);
+    height: auto;
+    font-family: 'Open Sans', sans-serif;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-special a {
+    color: rgb(255, 255, 255);
+}
+
+.footer-special {
+    padding: 1%;
+    color: white;
+    text-align: center;
+    background-size: 40%;
+}
+
+.footer-special a:hover {
+    background-color: rgb(10, 63, 161);
 }
