@@ -2,23 +2,29 @@
 
 {% block
 content %}
-<h1>Welcome to the login webpage</h1>
 <br><br>
-<form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Please enter your Email address</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email" size="30">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Please enter your Password</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" maxlength="12"
-            size="12">
-    </div>
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 500px;">
+        <h1 class="card-title mt-3 text-center">Login</h1>
+        <p class="text-center" style="padding-bottom: 2em;">Login to your account to use the forum</p>
+        <form>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+                </div>
+                <input name="" class="form-control" placeholder="Enter your Email address" type="email">
+            </div>
+            <br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Enter your password" type="password">
+            </div> <!-- form-group// -->
 
-    <button type="submit" class="btn btn-primary">Log in</button>
-</form>
+        </form>
+    </article>
+</div>
+
 
 {% endblock %}
