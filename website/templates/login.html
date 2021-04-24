@@ -7,19 +7,19 @@ content %}
     <article class="card-body mx-auto" style="max-width: 500px;">
         <h1 class="card-title mt-3 text-center">Login</h1>
         <p class="text-center" style="padding-bottom: 2em;">Login to your account to use the forum</p>
-        <form>
+        <form method="POST">
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
-                </div>
-                <input name="" class="form-control" placeholder="Enter your Email address" type="email">
+                </div> 
+                <input name="email" id="email" class="form-control" placeholder="Email address" type="email">
             </div>
             <br>
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" placeholder="Enter your password" type="password">
+                <input id="password" name="password" class="form-control" placeholder="Password" type="password">
             </div> <!-- form-group// -->
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block"> Login</button>

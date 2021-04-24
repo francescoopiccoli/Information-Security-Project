@@ -13,7 +13,7 @@ def create_database(app):
             
 def create_app(): 
     app = Flask(__name__)
-    #app.config['SECRET_KEY'] = ''  #for securing session data 
+    app.config['SECRET_KEY'] = 'ciao'  #for securing session data 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
