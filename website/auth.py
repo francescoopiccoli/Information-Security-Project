@@ -47,7 +47,7 @@ def signup():
             u = User(email=email, username=fullname, password=password1) #in the secure application we should hash the password with the werkzeug package
             db.session.add(u)
             db.session.commit()
-            login_user(user, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
+            login_user(u, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
             flash('Account created!', category="success")
             return redirect(url_for('views.home'))
     return render_template("sign_up.html", user=current_user)
@@ -61,4 +61,4 @@ def logout():
 
 @auth.route("/profile")
 def profile():
-    return render_template("profile.html")
+    return render_template("profile.html", user=current_user)
