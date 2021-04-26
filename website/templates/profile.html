@@ -3,8 +3,11 @@
 {% block
 content %}
 
+
 <h1 style="padding-bottom: 2em; padding-top: 2em;  margin: auto;
 ">Your Posts</h1>
+{% if posts|length < 1 %} <h4>Acctually, there are no posts yet</h4>
+{% endif %}
 <hr>
 <div class="container-fluid mt-100">
     <div class="row">
@@ -21,23 +24,28 @@ content %}
                         </div>
                     </div>
                 </div>
-                {% for post in user.posts %}
-                <div class="card-body py-3">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col"><a href="" class="text-big font-weight-semibold" data-abc="true">{{post.post_title}}</a></div>
-                        <div class="d-none d-md-block col-6">
-                            <div class="row no-gutters align-items-center">
-            
-                                <div class="col-3">14</div>
-                                <div class="col-9"><div class="  flex-truncate ml-2"> <a href="" class="d-block text-truncate" data-abc="true">Last Answer #1</a>
-                                    <div class="text-muted small text-truncate">2d ago &nbsp;·&nbsp; <a href="" class="text-muted" data-abc="true">User X</a></div></div>
+                    {% for post in user.posts %}
+                    <div class="card-body py-3">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col"><a href="" class="text-big font-weight-semibold"
+                                    data-abc="true">{{post.post_title}}</a></div>
+                            <div class="d-none d-md-block col-6">
+                                <div class="row no-gutters align-items-center">
+
+                                    <div class="col-3">14</div>
+                                    <div class="col-9">
+                                        <div class="  flex-truncate ml-2"> <a href="" class="d-block text-truncate"
+                                                data-abc="true">Last Answer #1</a>
+                                            <div class="text-muted small text-truncate">2d ago &nbsp;·&nbsp; <a href=""
+                                                    class="text-muted" data-abc="true">User X</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                <hr class="m-0">
-                {% endfor %}
+                    <hr class="m-0">
+                    {% endfor %}
             </div>
         </div>
     </div>
