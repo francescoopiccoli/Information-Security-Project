@@ -9,7 +9,7 @@ content %}
 <p>{{user.email}}</p>
 <br>
 <h2 style="padding-bottom: 2em; padding-top: 2em;  margin: auto;
-">Your Posts: {% if posts|length < 1 %} Actually, there are no posts yet
+">Your Posts: {% if user.posts|length < 1 %} Actually, there are no posts yet
 {% endif %}</h2>
 
     <hr>
