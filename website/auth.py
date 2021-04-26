@@ -58,6 +58,10 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+@auth.route("/create")
+def create():
+    return render_template("create.html", user=current_user)
+
 
 @auth.route("/profile")
 def profile():

@@ -3,8 +3,23 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 
+
 <h1>Welcome to our blog</h1>
 <br><br>
+
+{% if not(user.is_authenticated) %}
+<br>
+{% endif %}
+
+{% if (user.is_authenticated) %}
+<a href="/create">
+    <button type="button" id="new" class="btn btn-success btn-sm" style="margin-left:980px">Create
+        your
+        post</button>
+    </a>
+{% endif %}
+<br><br>
+
 <div class="jumbotron jumbotron-fluid2 text-black">
     <div class="container">
         <h3 class="display-4">Post #1</h3>
@@ -28,7 +43,5 @@
     </p>
 </div>
 <br>
-
-
 
 {% endblock %}

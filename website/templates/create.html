@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}Create your post{% endblock %} {% block content
+%}
+
+
+<article class="card-body mx-auto" style="max-width: 500px;">
+
+    <div class="page-header">
+        <h1>Create your post here</h1>
+        <br>
+    </div>
+
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Insert the title: </label>
+            <br>
+            <textarea class="form-control" id="title" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Insert the picture of the movie</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <div class="form-group">
+            <label for="text">Insert your comment: </label>
+            <br>
+            <textarea class="form-control" id="text" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <p class="lead">
+                <a class="btn btn-success btn-lg" href="#" role="button">Create it</a>
+            </p>
+        </div>
+    </form>
+</article>
+
+
+
+
+
+{% endblock%}
