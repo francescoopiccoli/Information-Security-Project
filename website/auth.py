@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Post
+from .models import User, Post, Comment
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
@@ -87,5 +87,22 @@ def profile():
     return render_template("profile.html", user=current_user)
 
 @auth.route("/post")
-def post():
-    return render_template("post.html", user=current_user)
+@auth.route('/post/<int:postid>', methods=['GET', 'POST'])
+def post(postid=None):
+
+    post_id = request.args.get('post', postid)
+
+    if request.method == 'POST':
+        comment_text = request.form.get('post')
+
+        if len(comment_text) < 1:
+            flash('comment cannot be empty', category='error')
+        else:
+            new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
+            db.session.add(new_comment)
+            db.session.commit()
+            flash('Comment added', category='success')
+
+
+    return render_template("post.html", user=current_user, post=Post.query.get(post_id)
+)

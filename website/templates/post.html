@@ -7,45 +7,32 @@
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
                 <div class="media-body">
-                    <h5>Realtime fetching data</h5>
+                    <h5>{{post.post_title}}</h5>
                     <p class="text-secondary">
-                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet   lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
-                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
-                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
-                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                        {{post.post_text}}
                     </p>
                     <hr>
-                    <p class="text-muted">[USER] posted <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                    <p class="text-muted">[USER] {{post.user_id}} posted <span class="text-secondary font-weight-bold">at {{post.post_date}}</span></p>
                 </div>
             </div>
         </div>
     </div>
+    {% for comment in post.comments %}
     <div class="card mb-2">
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
                 <div class="media-body">
                     <h6>
-                        ---------------------------------------- Comment  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                        {{comment.comment_text}}
                 </h6>
                 <hr>
-                    <p class="text-muted">[USER2] replied <span class="text-secondary font-weight-bold">5 minutes ago</span></p>
+                    <p class="text-muted">{{comment.user_id}} replied at <span class="text-secondary font-weight-bold">{{comment.comment_time}}</span></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card mb-2">
-        <div class="card-body p-2 p-sm-3">
-            <div class="media forum-item">
-                <div class="media-body">
-                    <h6>
-                        ---------------------------------------- Comment  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                </h6>
-                <hr>
-                    <p class="text-muted">[USER2] replied <span class="text-secondary font-weight-bold">3 minutes ago</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    {%endfor%}
+    
     <div class="card mb-2">
         <form method="POST">
             <div class="card-body">
