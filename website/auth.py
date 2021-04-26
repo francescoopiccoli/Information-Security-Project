@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User, Post
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
@@ -58,8 +59,26 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-@auth.route("/create")
+@auth.route("/create", methods=['GET', 'POST'])
+@login_required
 def create():
+    if request.method == 'POST':
+        post_title = request.form.get('title')
+        post_image = request.form.get('picture')
+        post_text = request.form.get('post')
+
+        if len(post_text) < 1:
+            flash('post content is too short', category='error')
+        elif len(post_title) < 1:
+            flash('title is too short', category='error')
+        else:
+            new_post = Post(post_date=datetime.now(), post_title=post_title, post_text=post_text, post_image=post_image, user_id=current_user.id)
+            db.session.add(new_post)
+            db.session.commit()
+            flash('Post added', category='success')
+            return redirect(url_for('views.home'))
+
+        
     return render_template("create.html", user=current_user)
 
 
