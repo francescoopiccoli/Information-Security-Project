@@ -2,7 +2,14 @@ h1 {
     color: green;
     font-weight: bold;
 }
-
+.display-4{
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: whitesmoke;
+}
+.lead{
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: whitesmoke;
+}
 p {
     font-family: 'Times New Roman', Times, serif;
     font-weight: lighter;

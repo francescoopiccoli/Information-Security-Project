@@ -85,3 +85,7 @@ def create():
 @auth.route("/profile")
 def profile():
     return render_template("profile.html", user=current_user)
+
+@auth.route("/post")
+def post():
+    return render_template("post.html", user=current_user)

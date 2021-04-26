@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}Create your post{% endblock %} {% block content
+%}
+
+ <!-- Post List -->
+ <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+    <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+            <div class="media forum-item">
+                <div class="media-body">
+                    <h5>Realtime fetching data</h5>
+                    <p class="text-secondary">
+                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet   lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
+                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
+                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet  
+                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                    </p>
+                    <hr>
+                    <p class="text-muted">[USER] posted <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+            <div class="media forum-item">
+                <div class="media-body">
+                    <h6>
+                        ---------------------------------------- Comment  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                </h6>
+                <hr>
+                    <p class="text-muted">[USER2] replied <span class="text-secondary font-weight-bold">5 minutes ago</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+            <div class="media forum-item">
+                <div class="media-body">
+                    <h6>
+                        ---------------------------------------- Comment  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                </h6>
+                <hr>
+                    <p class="text-muted">[USER2] replied <span class="text-secondary font-weight-bold">3 minutes ago</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <form method="POST">
+            <div class="card-body">
+                <label for="text">Reply to this thread: </label>
+                <br>
+                <textarea class="form-control" name="post" id="post" rows="5"></textarea>
+                <br>
+                <button type="submit" class="btn btn-primary ">Comment</button>
+            </div>  
+        </form>
+ 
+ </div>
+ </div>
+ 
+
+
+
+
+{% endblock%}
