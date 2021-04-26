@@ -85,13 +85,28 @@ def create():
 @auth.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html", user=current_user)
+    postID_totalComments_dict = dict()
+    for post in current_user.posts:
+        totalComments = 0
+        for comment in post.comments:
+            totalComments += 1
+            
+        postID_totalComments_dict.update({post.id: totalComments}) 
+
+    return render_template("profile.html", user=current_user, totalCommentXPost=postID_totalComments_dict)
 
 @auth.route("/post")
 @auth.route('/post/<int:postid>', methods=['GET', 'POST'])
 def post(postid=None):
 
     post_id = request.args.get('post', postid)
+    post=Post.query.get(post_id)
+    totalComments = 0
+    userID_username_dict = dict()
+
+    for comment in post.comments:
+        totalComments += 1
+        userID_username_dict.update({comment.user_id: User.query.get(comment.user_id).username}) 
 
     if request.method == 'POST':
         comment_text = request.form.get('post')
@@ -105,5 +120,4 @@ def post(postid=None):
             flash('Comment added', category='success')
 
 
-    return render_template("post.html", user=current_user, post=Post.query.get(post_id)
-)
+    return render_template("post.html", user=current_user, post=post, usernames=userID_username_dict, post_creator=User.query.get(post.user_id).username)
