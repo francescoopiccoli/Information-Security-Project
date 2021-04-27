@@ -2,62 +2,73 @@
 
 {% block
 content %}
-<h1>Welcome  {{user.username}}</h1>
+<h1>Welcome {{user.username}}</h1>
 <br>
-<h2>These are your personal information:</h2>
+<img src="https://i.stack.imgur.com/l60Hf.png" alt="profile picture" style="float:right; cursor: pointer; cursor: hand; border: 0;" width="200" height="150">
+<h2>Personal information:</h2>
 <br>
-<p>{{user.email}}</p>
+<p>Email: {{user.email}}</p>
 <br>
+<br><br>
 <h2 style="padding-bottom: 2em; padding-top: 2em;  margin: auto;
-">Your Posts: {% if user.posts|length < 1 %} Actually, there are no posts yet
-{% endif %}</h2>
+">Your Posts: {% if user.posts|length < 1 %} Actually, there are no posts yet </h2>
 
-    <hr>
-    <div class="container-fluid mt-100">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mb-3">
-                    <div class="card-header pr-0 pl-0">
-                        <div class="row no-gutters align-items-center w-100">
-                            <div class="col font-weight-bold pl-3">Thread</div>
-                            <div class="d-none d-md-block col-6 text-muted">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-3">#Replies</div>
-                                    <div class="col-6">Last activity</div>
+        {% else %}
+        <hr>
+        <div class="container-fluid mt-100">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-header pr-0 pl-0">
+                            <div class="row no-gutters align-items-center w-100">
+                                <div class="col font-weight-bold pl-3">Thread</div>
+                                <div class="d-none d-md-block col-6 text-muted">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-3">#Replies</div>
+                                        <div class="col-6">Last activity</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% for post in user.posts %}
-                    <div class="card-body py-3">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col"><a href="/post/{{post.id}}" class="text-big font-weight-semibold"
-                                    data-abc="true">{{post.post_title}}</a></div>
-                            <div class="d-none d-md-block col-6">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-3">{{totalCommentXPost.get(post.id)}}</div>
-                                    <div class="col-9">
-                                        <div class="  flex-truncate ml-2"> 
-                                            {% if lastActivityInfo.get(post.id)[0] %}
-                                            <a class="d-block text-truncate" data-abc="true" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" >{{lastActivityInfo.get(post.id)[0]}}</a>
-                                            <div class="text-muted small text-truncate">{{lastActivityInfo.get(post.id)[1].strftime("%d/%m/%Y, %H:%M")}} &nbsp;·&nbsp; 
-                                                <a href="" class="text-muted" data-abc="true">{{lastActivityInfo.get(post.id)[2]}}</a></div>
-                                            {% else %}
-                                            <a class="d-block text-truncate" data-abc="true" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" >No comments yet</a>
-                                            <div class="text-muted small text-truncate"> &nbsp;&nbsp; 
-                                                <a href="" class="text-muted" data-abc="true"></a></div>
-                                            {% endif %}
-                                            
+                        {% for post in user.posts %}
+                        <div class="card-body py-3">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col"><a href="/post/{{post.id}}" class="text-big font-weight-semibold"
+                                        data-abc="true">{{post.post_title}}</a></div>
+                                <div class="d-none d-md-block col-6">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-3">{{totalCommentXPost.get(post.id)}}</div>
+                                        <div class="col-9">
+                                            <div class="  flex-truncate ml-2">
+                                                {% if lastActivityInfo.get(post.id)[0] %}
+                                                <a class="d-block text-truncate" data-abc="true"
+                                                    style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{lastActivityInfo.get(post.id)[0]}}</a>
+                                                <div class="text-muted small text-truncate">
+                                                    {{lastActivityInfo.get(post.id)[1].strftime("%d/%m/%Y, %H:%M")}}
+                                                    &nbsp;·&nbsp;
+                                                    <a href="" class="text-muted"
+                                                        data-abc="true">{{lastActivityInfo.get(post.id)[2]}}</a>
+                                                </div>
+                                                {% else %}
+                                                <a class="d-block text-truncate" data-abc="true"
+                                                    style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">No
+                                                    comments yet</a>
+                                                <div class="text-muted small text-truncate"> &nbsp;&nbsp;
+                                                    <a href="" class="text-muted" data-abc="true"></a>
+                                                </div>
+                                                {% endif %}
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <hr class="m-0">
+                        {% endfor %}
                     </div>
-                    <hr class="m-0">
-                    {% endfor %}
                 </div>
             </div>
         </div>
-    </div>
-    {% endblock %}
+        {% endif %}
+        {% endblock %}
