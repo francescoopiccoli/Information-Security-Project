@@ -85,15 +85,22 @@ def create():
 @auth.route("/profile")
 @login_required
 def profile():
+    #to show the total number of comments, create a dictionary which is [postId : totalCOmments]
     postID_totalComments_dict = dict()
+    postID_LastComment_dict = dict()
     for post in current_user.posts:
         totalComments = 0
         for comment in post.comments:
             totalComments += 1
-            
+        lastComment = post.comments[-1]
+        #to show the last activity, create a dictionary which is {postid: [lastCmmentText, lastCommentTime, lastCommnetUSername]}
+        postID_LastComment_dict.update({post.id : [lastComment.comment_text, lastComment.comment_time, User.query.get(lastComment.user_id).username]})
         postID_totalComments_dict.update({post.id: totalComments}) 
+    print(postID_LastComment_dict)
 
-    return render_template("profile.html", user=current_user, totalCommentXPost=postID_totalComments_dict)
+
+
+    return render_template("profile.html", user=current_user, totalCommentXPost=postID_totalComments_dict, lastActivityInfo=postID_LastComment_dict)
 
 @auth.route("/post")
 @auth.route('/post/<int:postid>', methods=['GET', 'POST'])
