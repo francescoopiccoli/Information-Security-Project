@@ -9,5 +9,3 @@ if __name__ == '__main__':
 
 #to let a user add a post or comment or see his profile, he obviously neesds
 # to be logged, to impose this constraint we use the decorator @login_required 
-
-#to check whete

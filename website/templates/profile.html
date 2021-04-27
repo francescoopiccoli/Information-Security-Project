@@ -38,9 +38,9 @@ content %}
                                     <div class="col-3">{{totalCommentXPost.get(post.id)}}</div>
                                     <div class="col-9">
                                         <div class="  flex-truncate ml-2"> <a href="" class="d-block text-truncate"
-                                                data-abc="true">Last Answer #1</a>
-                                            <div class="text-muted small text-truncate">2d ago &nbsp;·&nbsp; <a href=""
-                                                    class="text-muted" data-abc="true">User X</a></div>
+                                                data-abc="true" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" >{{lastActivityInfo.get(post.id)[0]}}</a>
+                                            <div class="text-muted small text-truncate">{{lastActivityInfo.get(post.id)[1].strftime("%d/%m/%Y, %H:%M")}} &nbsp;·&nbsp; <a href=""
+                                                    class="text-muted" data-abc="true">{{lastActivityInfo.get(post.id)[2]}}</a></div>
                                         </div>
                                     </div>
                                 </div>
