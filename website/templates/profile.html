@@ -31,13 +31,13 @@ content %}
                     {% for post in user.posts %}
                     <div class="card-body py-3">
                         <div class="row no-gutters align-items-center">
-                            <div class="col"><a href="" class="text-big font-weight-semibold"
+                            <div class="col"><a href="/post/{{post.id}}" class="text-big font-weight-semibold"
                                     data-abc="true">{{post.post_title}}</a></div>
                             <div class="d-none d-md-block col-6">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-3">{{totalCommentXPost.get(post.id)}}</div>
                                     <div class="col-9">
-                                        <div class="  flex-truncate ml-2"> <a href="" class="d-block text-truncate"
+                                        <div class="  flex-truncate ml-2"> <a class="d-block text-truncate"
                                                 data-abc="true" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" >{{lastActivityInfo.get(post.id)[0]}}</a>
                                             <div class="text-muted small text-truncate">{{lastActivityInfo.get(post.id)[1].strftime("%d/%m/%Y, %H:%M")}} &nbsp;·&nbsp; <a href=""
                                                     class="text-muted" data-abc="true">{{lastActivityInfo.get(post.id)[2]}}</a></div>
