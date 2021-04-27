@@ -16,7 +16,6 @@
         <div style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
         <h3 class="display-4">{{post.post_title}}</h3>
         <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}</p>
-    
         <hr class="my-4"></div>
         <p>{{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
         <p class="lead">
@@ -44,7 +43,7 @@
             <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}</p>
             <hr class="my-4">
         </div>
-        <p>{{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
+        <p>Created by {{user.username}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
         <p class="lead">
             <a class="btn btn-success btn-lg" href="/post/{{post.id}}" role="button">Read more</a>
         </p>
