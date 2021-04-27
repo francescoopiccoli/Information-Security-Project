@@ -92,9 +92,10 @@ def profile():
         totalComments = 0
         for comment in post.comments:
             totalComments += 1
-        lastComment = post.comments[-1]
+        if len(post.comments) > 0:
+            lastComment = post.comments[-1]
         #to show the last activity, create a dictionary which is {postid: [lastCmmentText, lastCommentTime, lastCommnetUSername]}
-        postID_LastComment_dict.update({post.id : [lastComment.comment_text, lastComment.comment_time, User.query.get(lastComment.user_id).username]})
+            postID_LastComment_dict.update({post.id : [lastComment.comment_text, lastComment.comment_time, User.query.get(lastComment.user_id).username]})
         postID_totalComments_dict.update({post.id: totalComments}) 
     print(postID_LastComment_dict)
 
