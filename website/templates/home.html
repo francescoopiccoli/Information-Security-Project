@@ -43,7 +43,7 @@
             <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}</p>
             <hr class="my-4">
         </div>
-        <p>Created by {{user.username}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
+        <p>Created by {{usernames.get(post.user_id)}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
         <p class="lead">
             <a class="btn btn-success btn-lg" href="/post/{{post.id}}" role="button">Read more</a>
         </p>
