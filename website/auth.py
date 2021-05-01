@@ -132,37 +132,39 @@ def post(postid=None):
 
 
 @login_required
-@auth.route('/post/deletePost/<int:post_id>', methods=['POST'])
+@auth.route('/post/deletePost/<int:post_id>', methods=['GET', 'POST'])
 def delete_post(post_id):
-    post = Post.query.get(post_id)
-    if post:
-        #first delete all the comments associated to the post
-        for c in post.comments:
-            comment = Comment.query.get(c.id)
-            db.session.delete(comment)
-            db.session.commit()
+    if request.method == 'POST':
+        post = Post.query.get(post_id)
+        if post:
+            #first delete all the comments associated to the post
+            for c in post.comments:
+                comment = Comment.query.get(c.id)
+                db.session.delete(comment)
+                db.session.commit()
 
-        db.session.delete(post)
-        db.session.commit()
-        flash('Post deleted', category='success')
-    else:
-        flash('An error occurred', category='error')
+            db.session.delete(post)
+            db.session.commit()
+            flash('Post deleted', category='success')
+        else:
+            flash('An error occurred', category='error')
 
     return redirect(url_for('views.home'))
 
 
 @login_required
-@auth.route('/post/deleteComment/<int:comment_id>', methods=['POST'])
+@auth.route('/post/deleteComment/<int:comment_id>', methods=['GET', 'POST'])
 def delete_comment(comment_id):
+    
     comment = Comment.query.get(comment_id)
+    post_id = comment.post_id
 
-    if comment:
-        post_id = comment.post_id
-        db.session.delete(comment)
-        db.session.commit()
-        flash('Comment deleted', category='success')
-    else:
-        flash('An error occurred', category='error')
-
-    #could be change in order to stay in the post page, not to in the home page
+    if request.method == 'POST':
+        if comment:
+            db.session.delete(comment)
+            db.session.commit()
+            flash('Comment deleted', category='success')
+        else:
+            flash('An error occurred', category='error')
+            
     return redirect("/post/" + str(post_id))
