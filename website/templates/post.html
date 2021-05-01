@@ -1,18 +1,26 @@
 {% extends "base.html" %} {% block title %}Create your post{% endblock %} {% block content
 %}
 
- <!-- Post List -->
- <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+<!-- Post List -->
+<div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
     <div class="card mb-2">
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
                 <div class="media-body">
+                    {%if (user.id|string()==post.user_id|string()) %}
+                    <form method="POST">
+                        <div style="float: right;">
+                            <button type="submit" alt="delete" class="btn"><i class="fa fa-trash fa-2x"></i>
+                        </div>
+                    </form>
+                    {%endif%}
                     <h5>{{post.post_title}}</h5>
                     <p class="text-secondary">
                         {{post.post_text}}
                     </p>
                     <hr>
-                    <p class="text-muted">{{post_creator}} posted <span class="text-secondary font-weight-bold">at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</span></p>
+                    <p class="text-muted">{{post_creator}} posted <span class="text-secondary font-weight-bold">at
+                            {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</span></p>
                 </div>
             </div>
         </div>
@@ -22,17 +30,26 @@
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
                 <div class="media-body">
+                    {%if (user.id|string()==comment.user_id|string()) %}
+                    <form method="POST">
+                        <div style="float: right;">
+                            <button type="submit" alt="delete" class="btn"><i class="fa fa-trash fa-1x"></i>
+                        </div>
+                    </form>
+                    {%endif%}
                     <h6>
                         {{comment.comment_text}}
-                </h6>
-                <hr>
-                    <p class="text-muted">{{usernames.get(comment.user_id)}} replied at <span class="text-secondary font-weight-bold">{{comment.comment_time.strftime("%d/%m/%Y, %H:%M")}}</span></p>
+                    </h6>
+                    <hr>
+                    <p class="text-muted">{{usernames.get(comment.user_id)}} replied at <span
+                            class="text-secondary font-weight-bold">{{comment.comment_time.strftime("%d/%m/%Y,
+                            %H:%M")}}</span></p>
                 </div>
             </div>
         </div>
     </div>
     {%endfor%}
-    
+
     <div class="card mb-2">
         <form method="POST">
             <div class="card-body">
@@ -41,12 +58,12 @@
                 <textarea class="form-control" name="post" id="post" rows="5"></textarea>
                 <br>
                 <button type="submit" class="btn btn-primary ">Comment</button>
-            </div>  
+            </div>
         </form>
- 
- </div>
- </div>
- 
+
+    </div>
+</div>
+
 
 
 
