@@ -8,7 +8,7 @@
             <div class="media forum-item">
                 <div class="media-body">
                     {%if (user.id|string()==post.user_id|string()) %}
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('auth.delete_post', post_id=post.id) }}">
                         <div style="float: right;">
                             <button type="submit" alt="delete" class="btn"><i class="fa fa-trash fa-2x"></i>
                         </div>
@@ -31,7 +31,7 @@
             <div class="media forum-item">
                 <div class="media-body">
                     {%if (user.id|string()==comment.user_id|string()) %}
-                    <form method="POST">
+                    <form method="POST" action="{{ url_for('auth.delete_comment', comment_id=comment.id) }}">
                         <div style="float: right;">
                             <button type="submit" alt="delete" class="btn"><i class="fa fa-trash fa-1x"></i>
                         </div>

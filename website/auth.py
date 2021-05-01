@@ -131,10 +131,8 @@ def post(postid=None):
     return render_template("post.html", user=current_user, post=post, usernames=userID_username_dict, post_creator=User.query.get(post.user_id).username)
 
 
-# (?) no check if current user id is the same of the one who created the post that is being deleted
-#SHOULD NOT ALLOW GET METHOD, JUST TO TEST WITHOUT THE BUTTON
 @login_required
-@auth.route('/post/deletePost/<int:post_id>', methods=['GET', 'POST'])
+@auth.route('/post/deletePost/<int:post_id>', methods=['POST'])
 def delete_post(post_id):
     post = Post.query.get(post_id)
     if post:
@@ -153,10 +151,8 @@ def delete_post(post_id):
     return redirect(url_for('views.home'))
 
 
-# (?) no check if current user id is the same of the one who created the post that is being deleted
-#SHOULD NOT ALLOW GET METHOD, JUST TO TEST WITHOUT THE BUTTON
 @login_required
-@auth.route('/post/deleteComment/<int:comment_id>', methods=['GET', 'POST'])
+@auth.route('/post/deleteComment/<int:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
     comment = Comment.query.get(comment_id)
 
@@ -169,4 +165,4 @@ def delete_comment(comment_id):
         flash('An error occurred', category='error')
 
     #could be change in order to stay in the post page, not to in the home page
-    return redirect(url_for('views.home'))
+    return redirect("/post/" + str(post_id))
