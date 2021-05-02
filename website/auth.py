@@ -112,24 +112,26 @@ def post(postid=None):
     totalComments = 0
     userID_username_dict = dict()
 
-    for comment in post.comments:
-        totalComments += 1
-        userID_username_dict.update({comment.user_id: User.query.get(comment.user_id).username}) 
+    if(post):
+        for comment in post.comments:
+            totalComments += 1
+            userID_username_dict.update({comment.user_id: User.query.get(comment.user_id).username}) 
 
-    if request.method == 'POST':
-        comment_text = request.form.get('post')
+        if request.method == 'POST':
+            comment_text = request.form.get('post')
 
-        if len(comment_text) < 1:
-            flash('comment cannot be empty', category='error')
-        else:
-            new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
-            db.session.add(new_comment)
-            db.session.commit()
-            flash('Comment added', category='success')
+            if len(comment_text) < 1:
+                flash('comment cannot be empty', category='error')
+            else:
+                new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
+                db.session.add(new_comment)
+                db.session.commit()
+                flash('Comment added', category='success')
 
 
-    return render_template("post.html", user=current_user, post=post, usernames=userID_username_dict, post_creator=User.query.get(post.user_id).username)
-
+        return render_template("post.html", user=current_user, post=post, usernames=userID_username_dict, post_creator=User.query.get(post.user_id).username)
+    else:
+        return redirect(url_for('views.home'))
 
 @login_required
 @auth.route('/post/deletePost/<int:post_id>', methods=['GET', 'POST'])
