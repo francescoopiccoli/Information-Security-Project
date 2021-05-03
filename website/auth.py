@@ -126,8 +126,10 @@ def post(postid=None):
                 new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
                 db.session.add(new_comment)
                 db.session.commit()
+                if userID_username_dict.get(new_comment.user_id) == None:
+                    userID_username_dict.update({new_comment.user_id: User.query.get(new_comment.user_id).username}) 
+                
                 flash('Comment added', category='success')
-
 
         return render_template("post.html", user=current_user, post=post, usernames=userID_username_dict, post_creator=User.query.get(post.user_id).username)
     else:
