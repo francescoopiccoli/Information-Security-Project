@@ -13,3 +13,7 @@ preventing attacks with flask: https://flask.palletsprojects.com/en/1.1.x/securi
 XSS Prevention for Flask: https://semgrep.dev/docs/cheat-sheets/flask-xss/
 
 CSFR Protection: https://www.youtube.com/watch?v=_x_LoGzDL9I
+
+CSFR Protection: https://testdriven.io/blog/csrf-flask/
+
+Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-security-cross-site-scriptingxss/
