@@ -18,7 +18,7 @@
 {%endif%}
 <!-- Post List -->
 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-    <div class="card mb-2">
+    <div class="card mb-2" style="border: 3px solid black; background-color:#E7F4FF">
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
                 <div class="media-body">
@@ -29,12 +29,12 @@
                         </div>
                     </form>
                     {%endif%}
-                    <h5>{{post.post_title}}</h5>
+                    <h3>{{post.post_title}}</h3>
                     <p class="text-secondary">
                         {{post.post_text}}
                     </p>
                     <hr>
-                    <p class="text-muted">{{post_creator}} posted <span class="text-secondary font-weight-bold">at
+                    <p style="color:black">{{post_creator}} posted <span style="color:black"class=" font-weight-bold">at
                             {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</span></p>
                 </div>
             </div>
