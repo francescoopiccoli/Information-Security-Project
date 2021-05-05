@@ -11,3 +11,5 @@ security techniques: https://damyan.blog/post/flask-series-security/
 preventing attacks with flask: https://flask.palletsprojects.com/en/1.1.x/security/
 
 XSS Prevention for Flask: https://semgrep.dev/docs/cheat-sheets/flask-xss/
+
+CSFR Protection: https://www.youtube.com/watch?v=_x_LoGzDL9I
