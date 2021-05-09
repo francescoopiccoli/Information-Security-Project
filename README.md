@@ -14,6 +14,8 @@ XSS Prevention for Flask: https://semgrep.dev/docs/cheat-sheets/flask-xss/
 
 CSFR Protection: https://www.youtube.com/watch?v=_x_LoGzDL9I
 
+CSRF Protection: https://www.youtube.com/watch?v=TNM0X7Hmv0E
+
 CSFR Protection: https://testdriven.io/blog/csrf-flask/
 
 Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-security-cross-site-scriptingxss/
