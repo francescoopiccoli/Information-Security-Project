@@ -21,3 +21,5 @@ CSFR Protection: https://testdriven.io/blog/csrf-flask/
 Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-security-cross-site-scriptingxss/
 
 XSS Demo (Reflected/Stored): https://github.com/bgres/xss-demo
+
+How to run XSS reflected attack example: https://www.youtube.com/watch?v=u-96HkBS8mY
