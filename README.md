@@ -23,3 +23,5 @@ Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-sec
 XSS Demo (Reflected/Stored): https://github.com/bgres/xss-demo
 
 How to run XSS reflected attack example: https://www.youtube.com/watch?v=u-96HkBS8mY
+
+SQL INJECTION EXAMPLE : https://portswigger.net/support/using-sql-injection-to-bypass-authentication
