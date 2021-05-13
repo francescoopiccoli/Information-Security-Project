@@ -1,15 +1,15 @@
 {% extends "base.html" %} {% block title %}Create your post{% endblock %} {% block content
 %}
 
-{% if (post.post_image.startswith('http')) %}
+{% if post.id % 2 != 0 %}
 <div class="container">
     <div>
-        <img src="{{post.post_image}};" alt="cover" style="height: 400px; width: 100%;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBDhTidOuVpFfT4GZVowgrrVAeXYPblgi3s9YuElnVKbthob1KhJBBUXhNmPGMfBrcyOM&usqp=CAU" alt="cover" style="height: 400px; width: 100%;">
     </div>
 </div>
 {%endif%}
 
-{% if not(post.post_image.startswith('http')) %}
+{% if post.id % 2 == 0 %}
 <div class="container">
     <div>
         <img src="https://assets.digitalocean.com/labs/images/community_bg.png" alt="cover" style="height: 400px; width: 100%;">
