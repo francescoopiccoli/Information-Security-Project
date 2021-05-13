@@ -3,6 +3,8 @@ from .models import User, Post, Comment
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
+from sqlalchemy import text
+
 
 auth = Blueprint('auth', __name__)
 
@@ -11,7 +13,19 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        user = User.query.filter_by(email=email).first()
+        with db.engine.connect() as connection:
+            sql = text('SELECT * FROM user WHERE email=\'' + email + "\'") # ' OR 1=1    WHERE email=\'' OR 1=1 OR '       '; DROP TABLE post; SELECT * FROM user where 1=1 OR email='
+            print(sql)
+            raw_user = connection.execute(sql)
+            raw_user = raw_user.mappings().all()
+            print(raw_user)
+
+            user = User()
+            user.id = raw_user[0].get('id')
+            user.email = raw_user[0].get('email')
+            user.password = raw_user[0].get('password')
+            user.username = raw_user[0].get('username')
+
         if user:
             if user.password == password:
                 flash('Logged in successfully', category='success')
@@ -124,7 +138,7 @@ def post(postid=None):
                 flash('comment cannot be empty', category='error')
             else:
                 new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
-                db.session.add(new_comment)
+                db.session.add(new_comment) #INSERT INTO comment VALUES();
                 db.session.commit()
                 if userID_username_dict.get(new_comment.user_id) == None:
                     userID_username_dict.update({new_comment.user_id: User.query.get(new_comment.user_id).username}) 
@@ -172,3 +186,7 @@ def delete_comment(comment_id):
             flash('An error occurred', category='error')
             
     return redirect("/post/" + str(post_id))
+
+@auth.route("/untitled")
+def untitled():
+    return render_template("untitled.html", user=current_user)
