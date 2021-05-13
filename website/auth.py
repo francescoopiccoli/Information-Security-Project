@@ -186,7 +186,3 @@ def delete_comment(comment_id):
             flash('An error occurred', category='error')
             
     return redirect("/post/" + str(post_id))
-
-@auth.route("/untitled")
-def untitled():
-    return render_template("untitled.html", user=current_user)
