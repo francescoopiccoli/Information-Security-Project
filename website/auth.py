@@ -3,6 +3,7 @@ from .models import User, Post, Comment
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
+import random
 
 auth = Blueprint('auth', __name__)
 
@@ -62,9 +63,10 @@ def logout():
 @auth.route("/create", methods=['GET', 'POST'])
 @login_required
 def create():
+    images = ['https://images.prismic.io/www-static/499858ce-04e8-4c5b-9329-a735976b3cf5_App-Platform-bg.png?auto=compress,format', 'https://cdn.dribbble.com/users/464226/screenshots/15086644/media/ead429c865cbd3576e81e1e8c6e132cd.png?compress=1&resize=800x600', 'https://assets.digitalocean.com/labs/images/community_bg.png', 'https://cdn.dribbble.com/users/464226/screenshots/15101536/media/52b328437eb2849bf7dbc2da0da11d6f.png?compress=1&resize=800x600', 'https://cdn.dribbble.com/users/464226/screenshots/14507703/media/ec1b31df01640a6bacfc1ef6e4d637b0.png?compress=1&resize=800x600', 'https://cdn.dribbble.com/users/464226/screenshots/14490629/media/591178cb7994be86d4812b3dbc884efd.png?compress=1&resize=800x600', 'https://cdn.dribbble.com/users/464226/screenshots/9362946/media/f6fdc2aa6f57eb25efed72dc3f9a1ccd.png?compress=1&resize=800x600', 'https://cdn.dribbble.com/users/741168/screenshots/5380170/connected_city_-_part_3_digitalocean_4x.png?compress=1&resize=1600x1200']
+    post_image = images[random.randint(0,len(images)-1)]
     if request.method == 'POST':
         post_title = request.form.get('title')
-        post_image = request.form.get('picture')
         post_text = request.form.get('post')
 
         if len(post_text) < 1:
