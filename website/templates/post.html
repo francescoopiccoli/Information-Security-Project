@@ -1,21 +1,11 @@
 {% extends "base.html" %} {% block title %}Create your post{% endblock %} {% block content
 %}
 
-{% if (post.post_image.startswith('http')) %}
 <div class="container">
     <div>
         <img src="{{post.post_image}};" alt="cover" style="height: 400px; width: 100%;">
     </div>
 </div>
-{%endif%}
-
-{% if not(post.post_image.startswith('http')) %}
-<div class="container">
-    <div>
-        <img src="https://assets.digitalocean.com/labs/images/community_bg.png" alt="cover" style="height: 400px; width: 100%;">
-    </div>
-</div>
-{%endif%}
 <!-- Post List -->
 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
     <div class="card mb-2" style="border: 3px solid black; background-color:#E7F4FF">

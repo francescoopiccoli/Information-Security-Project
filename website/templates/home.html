@@ -11,12 +11,8 @@
 {% endif %}
 {% if not(user.is_authenticated) %}
 {% for post in posts %}
-{% if (post.post_image.startswith('http')) %}
 <div class="jumbotron jumbotron-fluid2 text-black" style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
-{% endif %}
-{% if not(post.post_image.startswith('http')) %}
-<div class="jumbotron jumbotron-fluid2 text-black" style="background-image: url('https://assets.digitalocean.com/labs/images/community_bg.png'); background-size: cover; background-position: center;">
-{% endif %}
+    
     <div class="container">
         
         <h3 class="display-4">{{post.post_title}}</h3>
