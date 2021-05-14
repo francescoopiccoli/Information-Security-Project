@@ -4,6 +4,7 @@ from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 import random
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -14,7 +15,7 @@ def login():
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
         if user:
-            if user.password == password:
+            if check_password_hash(user.password, password):
                 flash('Logged in successfully', category='success')
                 login_user(user, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
                 return redirect(url_for('views.home'))
@@ -46,7 +47,7 @@ def signup():
         elif len(password1) < 5:
             flash('Passwords must be at least 5 characters', category="error")
         else:
-            u = User(email=email, username=fullname, password=password1) #in the secure application we should hash the password with the werkzeug package
+            u = User(email=email, username=fullname, password=generate_password_hash(password1, 'sha256')) #in the secure application we should hash the password with the werkzeug package
             db.session.add(u)
             db.session.commit()
             login_user(u, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
