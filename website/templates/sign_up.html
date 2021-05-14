@@ -5,34 +5,71 @@ content %}
     <article class="card-body mx-auto" style="max-width: 500px;">
         <h1 class="card-title mt-3 text-center">Register</h1>
         <p class="text-center" style="padding-bottom: 2em;">Create an account to use the forum</p>
-        <form method="POST">
+        <form method="POST" action="">
+            {{ form.csrf_token }}
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                 </div>
-                <input name="fullname" class="form-control" placeholder="Full name" type="text">
+                {% if form.username.errors %}
+                {{ form.username(class="form-control is-invalid", placeholder="Full name") }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class="form-control", placeholder="Full name") }}
+                {% endif %}
             </div>
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
                 </div>
-                <input name="email" id="email" class="form-control" placeholder="Email address" type="email">
+                {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid", placeholder="Email address") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control", placeholder="Email address") }}
+                {% endif %}
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input id="password1" name="password1" class="form-control" placeholder="Create password" type="password">
+                {% if form.password.errors %}
+                {{ form.password(class="form-control is-invalid",placeholder="Create password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control",placeholder="Create password") }}
+                {% endif %}
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input id="password2" name="password2" class="form-control" placeholder="Repeat password" type="password">
+                {% if form.confirm_password.errors %}
+                {{ form.confirm_password(class="form-control is-invalid",placeholder="Repeat password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.confirm_password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.confirm_password(class="form-control",placeholder="Repeat password") }}
+                {% endif %}
             </div> <!-- form-group// -->
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                {{ form.submit(class="btn btn-primary btn-block") }}
             </div> <!-- form-group// -->
             <p class="text-center">Already have an account? <a href="/login">Log In</a> </p>
         </form>

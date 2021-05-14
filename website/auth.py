@@ -1,59 +1,52 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask_wtf import form
 from .models import User, Post, Comment
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 import random
 from werkzeug.security import generate_password_hash, check_password_hash
+from .forms import RegistrationForm, LoginForm
+
 
 auth = Blueprint('auth', __name__)
 
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        user = User.query.filter_by(email=email).first()
+    if current_user.is_authenticated:
+        return redirect(url_for('views.home'))
+    
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
         if user:
-            if check_password_hash(user.password, password):
+            if check_password_hash(user.password, form.password.data):
                 flash('Logged in successfully', category='success')
                 login_user(user, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
-                return redirect(url_for('views.home'))
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('views.home'))
             else:
-                flash('Incorrect password, try again', category='error')
+                flash('Incorrect password, try again', 'danger')
         else:
-            flash('Email does not exist', category='error')
+            flash('Email does not exist', 'danger')
 
-    return render_template("login.html", user=current_user)
+    return render_template("login.html", user=current_user, form = form)
 
 
 @auth.route("/sign-up", methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        fullname = request.form.get('fullname')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
-        
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email already exists', category="error")
-        elif len(email)< 4:
-            flash('Email must be greater than 4 characters', category="error")
-        elif len(fullname) < 2:
-            flash('Fullname must be greater than 2 characters', category="error")
-        elif password1 != password2:
-            flash('Passwords don\'t match', category="error")
-        elif len(password1) < 5:
-            flash('Passwords must be at least 5 characters', category="error")
-        else:
-            u = User(email=email, username=fullname, password=generate_password_hash(password1, 'sha256')) #in the secure application we should hash the password with the werkzeug package
-            db.session.add(u)
-            db.session.commit()
-            login_user(u, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
-            flash('Account created!', category="success")
-            return redirect(url_for('views.home'))
-    return render_template("sign_up.html", user=current_user)
+    if current_user.is_authenticated:
+        return redirect(url_for('views.home'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data).decode('utf-8')
+        u = User(email=form.email.data, username=form.username.data, password=hashed_password) #in the secure application we should hash the password with the werkzeug package
+        db.session.add(u)
+        db.session.commit()
+        login_user(u, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
+        flash('Account created!', category="success")
+        return redirect(url_for('views.home'))
+    return render_template("sign_up.html", user=current_user, form = form)
 
 @auth.route("/logout")
 @login_required #using this decorator, we cannot access this page unless the user is logged in
