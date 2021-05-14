@@ -19,9 +19,9 @@
                         </div>
                     </form>
                     {%endif%}
-                    <h3>{{post.post_title}}</h3>
+                    <h3>{{post.post_title |safe}}</h3>
                     <p class="text-secondary">
-                        {{post.post_text}}
+                        {{post.post_text |safe }}
                     </p>
                     <hr>
                     <p style="color:black">{{post_creator}} posted <span style="color:black"class=" font-weight-bold">at
@@ -43,7 +43,7 @@
                     </form>
                     {%endif%}
                     <h6>
-                        {{comment.comment_text}}
+                        {{comment.comment_text |safe}}
                     </h6>
                     <hr>
                     <p class="text-muted">{{usernames.get(comment.user_id)}} replied at <span
