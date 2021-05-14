@@ -14,27 +14,23 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         with db.engine.connect() as connection:
-            sql = text('SELECT * FROM user WHERE email=\'' + email + "\'") # ' OR 1=1    WHERE email=\'' OR 1=1 OR '       '; DROP TABLE post; SELECT * FROM user where 1=1 OR email='
+            sql = text('SELECT * FROM user WHERE email=\'' + email + '\' AND password=\''+ password+ "\'") # ' OR 1=1    WHERE email=\'' OR 1=1 OR '       '; DROP TABLE post; SELECT * FROM user where 1=1 OR email='
             print(sql)
             raw_user = connection.execute(sql)
             raw_user = raw_user.mappings().all()
             print(raw_user)
-
+            
+        if raw_user:
             user = User()
             user.id = raw_user[0].get('id')
             user.email = raw_user[0].get('email')
             user.password = raw_user[0].get('password')
             user.username = raw_user[0].get('username')
-
-        if user:
-            if user.password == password:
-                flash('Logged in successfully', category='success')
-                login_user(user, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
-                return redirect(url_for('views.home'))
-            else:
-                flash('Incorrect password, try again', category='error')
+            flash('Logged in successfully', category='success')
+            login_user(user, remember=True) #remember that the user is logged in, stored in the flask session data, unless webserver restarts or user clears its browser history, he is remembered
+            return redirect(url_for('views.home'))
         else:
-            flash('Email does not exist', category='error')
+            flash('Incorrect credentials please try again!', category='error')
 
     return render_template("login.html", user=current_user)
 
