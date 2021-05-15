@@ -16,7 +16,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('views.home'))
     
-    form = RegistrationForm()
+    form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
@@ -26,9 +26,9 @@ def login():
                 next_page = request.args.get('next')
                 return redirect(next_page) if next_page else redirect(url_for('views.home'))
             else:
-                flash('Incorrect password, try again', 'danger')
+                flash('Incorrect password, try again', category='error')
         else:
-            flash('Email does not exist', 'danger')
+            flash('Email does not exist', category='error')
 
     return render_template("login.html", user=current_user, form = form)
 
@@ -39,7 +39,7 @@ def signup():
         return redirect(url_for('views.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = generate_password_hash(form.password.data,'sha256')
         u = User(email=form.email.data, username=form.username.data, password=hashed_password) #in the secure application we should hash the password with the werkzeug package
         db.session.add(u)
         db.session.commit()
