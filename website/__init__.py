@@ -3,6 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
+
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -33,6 +35,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
     login_manager.init_app(app)
+    csrf = CSRFProtect()
+    csrf.init_app(app)
 
     #this is telling how we load a user
     @login_manager.user_loader
