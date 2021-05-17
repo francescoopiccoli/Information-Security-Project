@@ -28,3 +28,6 @@ SQL INJECTION EXAMPLE : https://portswigger.net/support/using-sql-injection-to-b
 
 sqlite not executing multiple statements: https://stackoverflow.com/questions/15513854/sqlite3-warning-you-can-only-execute-one-statement-at-a-time
 (if we manage to make multiple statemnts possible, then also all the "INSERT" statements (like for inserting a post, a comment, a user) we have can be made unsafe
+
+
+SEARCH BOX: https://www.youtube.com/watch?v=UqRawhLNE-0 (first few minutes) -> he does exactly the same thing we have to do
