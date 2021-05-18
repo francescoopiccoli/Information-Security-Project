@@ -6,54 +6,66 @@
 
 <h1>Welcome to our Forum</h1>
 <br><br>
-{% if posts|length < 1 %}
-<h4>Actually, there are no posts yet</h4>
-{% endif %}
-{% if not(user.is_authenticated) %}
-{% for post in posts %}
-<div class="jumbotron jumbotron-fluid2 text-black" style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
-    
-    <div class="container">
-        
-        <h3 class="display-4">{{post.post_title}}</h3>
-        <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}</p>
-        <hr class="my-4" style="color: antiquewhite;  border-style:solid; border-color: antiquewhite;">
-        <p class="lead">{{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
-        <p class="lead">
-            <a class="btn btn-success btn-lg" href="/login" role="button">Read more</a>
-        </p>
-    </div>
-</div>
-<br>
-{% endfor %}
-<br>
-{% endif %}
+{% if posts|length < 1 %} <h4>Actually, there are no posts yet</h4>
+    {% endif %}
+    {% if not(user.is_authenticated) %}
+    {% for post in posts %}
+    <div class="jumbotron jumbotron-fluid2 text-black"
+        style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
 
-{% if (user.is_authenticated) %}
-<a href="/create">
-    <button type="button" id="new" class="btn btn-success btn-sm" style="margin-left:980px">Create
-        your
-        post</button>
-</a>
-<br><br>
-{% for post in posts %}
-<div class="jumbotron jumbotron-fluid2 text-black" style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
+        <div class="container">
 
-
-    <div class="container">
-        
             <h3 class="display-4">{{post.post_title}}</h3>
-            <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}</p>
+            <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}
+            </p>
             <hr class="my-4" style="color: antiquewhite;  border-style:solid; border-color: antiquewhite;">
-        
-        <p class="lead">Created by {{usernames.get(post.user_id)}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
-        <p class="lead">
-            <a class="btn btn-success btn-lg" href="/post/{{post.id}}" role="button">Read more</a>
-        </p>
+            <p class="lead">{{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
+            <p class="lead">
+                <a class="btn btn-success btn-lg" href="/login" role="button">Read more</a>
+            </p>
+        </div>
     </div>
-</div>
-<br>
-{% endfor %}
-{% endif %}
-<br>
-{% endblock %}
+    <br>
+    {% endfor %}
+    <br>
+    {% endif %}
+
+    {% if (user.is_authenticated) %}
+    <div style="float:left;" style="margin-right:-980px">
+        <form method="GET">
+            <input type="search" aria-label="Search" name="q" placeholder="Search" autocomplete="off" />
+            <button class="submit">Search</button>
+        </form>
+    </div>
+    <div style="float:right;" style="margin-left:980px">
+        <a href="/create">
+            <button type="button" id="new" class="btn btn-success btn-sm">Create
+                your
+                post</button>
+        </a>
+    </div>
+    <br><br>
+    {% for post in posts %}
+    <div class="jumbotron jumbotron-fluid2 text-black"
+        style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
+
+
+        <div class="container">
+
+            <h3 class="display-4">{{post.post_title}}</h3>
+            <p class="lead" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{post.post_text}}
+            </p>
+            <hr class="my-4" style="color: antiquewhite;  border-style:solid; border-color: antiquewhite;">
+
+            <p class="lead">Created by {{usernames.get(post.user_id)}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}
+            </p>
+            <p class="lead">
+                <a class="btn btn-success btn-lg" href="/post/{{post.id}}" role="button">Read more</a>
+            </p>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+    <br>
+    {% endblock %}
