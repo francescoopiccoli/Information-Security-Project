@@ -41,12 +41,15 @@
             <hr class="my-4" style="color: antiquewhite;  border-style:solid; border-color: antiquewhite;">
             {% if (user.is_authenticated) %}
                 <p class="lead">Created by {{usernames.get(post.user_id)}} at {{post.post_date.strftime("%d/%m/%Y, %H:%M")}}
+                <p class="lead">
+                    <a class="btn btn-success btn-lg" href="/post/{{post.id}}" role="button">Read more</a>
+                </p>
             {% else %}
                 <p class="lead">{{post.post_date.strftime("%d/%m/%Y, %H:%M")}}</p>
+                <p class="lead">
+                    <a class="btn btn-success btn-lg" href="/login" role="button">Read more</a>
+                </p>
             {% endif %}
-            <p class="lead">
-                <a class="btn btn-success btn-lg" href="/login" role="button">Read more</a>
-            </p>
         </div>
     </div>
     <br>
