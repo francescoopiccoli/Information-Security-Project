@@ -8,7 +8,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    posts = Post.query.all()
+
     #if request.method == 'GET':
     q = request.args.get('q')
 
@@ -25,6 +25,4 @@ def home():
     userID_username_dict = dict()
     for post in posts:
         userID_username_dict.update({post.user_id: User.query.get(post.user_id).username})
-    return render_template("home.html", user=current_user, posts=posts, usernames=userID_username_dict)
-
     return render_template("home.html", user=current_user, posts=posts, usernames=userID_username_dict, search_content=q)
