@@ -36,6 +36,9 @@
             <input type="search" aria-label="Search" name="q" placeholder="Search" autocomplete="off" />
             <button class="submit">Search</button>
         </form>
+        {% if (search_content)%}
+            <p>Results for {{search_content | safe }}</p>
+        {% endif %}
     </div>
     <div style="float:right;" style="margin-left:980px">
         <a href="/create">
