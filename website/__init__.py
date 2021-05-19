@@ -18,6 +18,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = '0631188pa0b13ce0c676ader280ba245'  #for securing session data 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['WTF_CSFR_ENABLED'] =True
     db.init_app(app)
 
     
