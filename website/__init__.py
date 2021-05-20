@@ -3,6 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
+
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -14,8 +16,9 @@ def create_database(app):
             
 def create_app(): 
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'ciao'  #for securing session data 
+    app.config['SECRET_KEY'] = '0631188pa0b13ce0c676ader280ba245'  #for securing session data 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['WTF_CSFR_ENABLED'] =True
     db.init_app(app)
 
     
@@ -29,9 +32,12 @@ def create_app():
     
     create_database(app)
 
-    login_manager = LoginManager()
+    login_manager = LoginManager(app)
     login_manager.login_view = 'auth.login'
+    login_manager.login_message_category = 'info'
     login_manager.init_app(app)
+    csrf = CSRFProtect()
+    csrf.init_app(app)
 
     #this is telling how we load a user
     @login_manager.user_loader
