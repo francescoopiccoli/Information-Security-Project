@@ -31,3 +31,5 @@ sqlite not executing multiple statements: https://stackoverflow.com/questions/15
 
 
 SEARCH BOX: https://www.youtube.com/watch?v=UqRawhLNE-0 (first few minutes) -> he does exactly the same thing we have to do
+
+search box sql injection: https://www.youtube.com/watch?v=ciNHn38EyRc
