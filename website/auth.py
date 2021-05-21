@@ -14,7 +14,7 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         with db.engine.connect() as connection:
-            sql = text('SELECT * FROM user WHERE email=\'' + email + '\' AND password=\''+ password+ "\'") # ' OR 1=1    WHERE email=\'' OR 1=1 OR '       '; DROP TABLE post; SELECT * FROM user where 1=1 OR email='
+            sql = text('SELECT * FROM user WHERE email=\'' + email + '\' AND password=\''+ password+ "\'") 
             print(sql)
             raw_user = connection.execute(sql)
             raw_user = raw_user.mappings().all()
@@ -84,7 +84,12 @@ def create():
             flash('title is too short', category='error')
         else:
             new_post = Post(post_date=datetime.now(), post_title=post_title, post_text=post_text, post_image=post_image, user_id=current_user.id)
-            db.session.add(new_post)
+            with db.engine.connect() as connection:
+                    sql = text('Insert INTO post (post_date, post_image, user_id, post_title, post_text) Values(\''+str(datetime.now()) + '\',\''+ str(post_image)+ '\',\''+str(current_user.id) + '\',\''+post_title + '\',\''+post_text + "\')")
+                    print(sql)
+                    
+                    connection.execute(sql)
+            #db.session.add(new_post)
             db.session.commit()
             flash('Post added', category='success')
             return redirect(url_for('views.home'))
@@ -135,7 +140,16 @@ def post(postid=None):
                 flash('comment cannot be empty', category='error')
             else:
                 new_comment = Comment(comment_time=datetime.now(), comment_text=comment_text, post_id=post_id, user_id=current_user.id)
-                db.session.add(new_comment) #INSERT INTO comment VALUES();
+            
+                with db.engine.connect() as connection:
+                    sql = text('Insert INTO comment (user_id,post_id, comment_text,comment_time) Values(\''+str(current_user.id) + '\',\''+ str(post_id)+ '\',\''+comment_text + '\',\''+str(datetime.now()) + "\')")
+                    print(sql)
+                    
+                    connection.execute(sql)
+                
+                
+            
+                #db.session.add(new_comment) #INSERT INTO comment VALUES();
                 db.session.commit()
                 if userID_username_dict.get(new_comment.user_id) == None:
                     userID_username_dict.update({new_comment.user_id: User.query.get(new_comment.user_id).username}) 

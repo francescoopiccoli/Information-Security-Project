@@ -27,4 +27,4 @@ class Comment(db.Model, UserMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     comment_text = db.Column(db.String(10000))
-    comment_time = db.Column(db.DateTime(timezone=True), default=func.now())
+    comment_time = db.Column(db.DateTime(timezone=True), default=func.now()) 
