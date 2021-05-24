@@ -1,35 +1,31 @@
-# Information-Security-Project 
+Francesco  Piccoli (ID: 17117)
+Matteo Fiore (ID: 17)
+Deivid Bardhi (ID: 17) 
 
-## Useful links
+**Information Security Project
+**
 
-Trello board: https://trello.com/b/3g9CY6TW/project
+**User Manual
+**
 
-flask application complete video tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
+To run the application, you must have python3 installed on your machine
 
-security techniques: https://damyan.blog/post/flask-series-security/
+Here’s a quick guide to download and run our application:
 
-preventing attacks with flask: https://flask.palletsprojects.com/en/1.1.x/security/
+Open this link: https://github.com/francescoopiccoli/Information-Security-Project
 
-XSS Prevention for Flask: https://semgrep.dev/docs/cheat-sheets/flask-xss/
+Choose the version of the application you are interested in by changing the branch (secure-version or insecure-version)
 
-CSFR Protection: https://www.youtube.com/watch?v=_x_LoGzDL9I
+Download the repository as zip file and unzip the file
 
-CSRF Protection: https://www.youtube.com/watch?v=TNM0X7Hmv0E
+On the terminal/command line “cd” the directory of the newly created folder run the following:
+	
+	python3 -m venv my_venv
 
-CSFR Protection: https://testdriven.io/blog/csrf-flask/
+	source ./my_venv/bin/activate
 
-Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-security-cross-site-scriptingxss/
+	pip3 install -r ./requirements.txt
 
-XSS Demo (Reflected/Stored): https://github.com/bgres/xss-demo
-
-How to run XSS reflected attack example: https://www.youtube.com/watch?v=u-96HkBS8mY
-
-SQL INJECTION EXAMPLE : https://portswigger.net/support/using-sql-injection-to-bypass-authentication
-
-sqlite not executing multiple statements: https://stackoverflow.com/questions/15513854/sqlite3-warning-you-can-only-execute-one-statement-at-a-time
-(if we manage to make multiple statemnts possible, then also all the "INSERT" statements (like for inserting a post, a comment, a user) we have can be made unsafe
+	python3 app.py 
 
 
-SEARCH BOX: https://www.youtube.com/watch?v=UqRawhLNE-0 (first few minutes) -> he does exactly the same thing we have to do
-
-search box sql injection: https://www.youtube.com/watch?v=ciNHn38EyRc
