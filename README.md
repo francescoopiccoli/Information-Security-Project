@@ -29,3 +29,11 @@ On the terminal/command line “cd” the directory of the newly created folder 
 	python3 app.py 
 
 
+To login as one of our pre-existing users you can use one of the following credentials:
+
+email: ciccio@gmail.com psw: password1
+
+email: teo@gmail.com psw: password2
+
+email: deiv@gmail.com psw: password3
+
