@@ -1,3 +1,11 @@
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+}
+
 h1 {
     color: green;
     font-weight: bold;
@@ -15,11 +23,20 @@ p {
     font-weight: lighter;
 }
 
+
+footer{
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
 .footer-basic {
+    height: auto;
     padding: 40px 0;
     background-color: #2e3333;
     color: #f9f6f3;
     width: 100%;
+  
   }
   
   .footer-basic ul {
