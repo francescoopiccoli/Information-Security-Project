@@ -4,11 +4,8 @@
 %}
 
 
-<h1>Welcome to our Forum</h1>
+<h1>Welcome to our forum</h1>
 <br><br>
-{% if posts|length < 1 %} <h4>Actually, there are no posts yet</h4>
-    {% endif %}
-
     <div style="float:left;" style="margin-right:-980px">
         <form method="GET">
             <input type="search" aria-label="Search" name="q" placeholder="Search" autocomplete="off" style=" border: 2px solid rgb(11, 126, 161);
@@ -33,8 +30,11 @@
         </a>
     </div>
     {% endif %}
+  
     <br><br><br><br><br>
-
+    {% if posts|length < 1 %} <h4 style="text-align: center;">No posts yet</h4><br><br>
+    <center><img style="margin-bottom: 5%; text-align: center; border-radius: 100%; width:40%; height:40%;" src="https://static.coindesk.com/wp-content/uploads/2021/04/dogecoin.jpg" /></center>
+    {% endif %}
     {% for post in posts %}
     <div class="jumbotron jumbotron-fluid2 text-black"
         style="background-image: url('{{post.post_image}}'); background-size: cover; background-position: center;">
