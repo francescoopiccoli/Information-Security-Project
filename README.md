@@ -1,19 +1,46 @@
-# Information-Security-Project 
+Francesco  Piccoli (ID: 17117)
 
-## Useful links
+Matteo Fiore (ID: 17140)
 
-Trello board: https://trello.com/b/3g9CY6TW/project
+Deivid Bardhi (ID: 17138) 
 
-flask application complete video tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
+# Information Security Project
 
-security techniques: https://damyan.blog/post/flask-series-security/
+## User Manual
 
-preventing attacks with flask: https://flask.palletsprojects.com/en/1.1.x/security/
+*(To run the application, you must have python3 installed on your machine)*
 
-XSS Prevention for Flask: https://semgrep.dev/docs/cheat-sheets/flask-xss/
+Here’s a quick guide to download and run our application:
 
-CSFR Protection: https://www.youtube.com/watch?v=_x_LoGzDL9I
+1. Open this link: https://github.com/francescoopiccoli/Information-Security-Project
 
-CSFR Protection: https://testdriven.io/blog/csrf-flask/
+2. Choose the version of the application you are interested in by changing the branch (**_secure-version_** or **_insecure-version_**)
 
-Reflected XSS: https://holdmybeersecurity.com/2019/12/08/part-1-learning-web-security-cross-site-scriptingxss/
+3. Download the repository as zip file and unzip the file
+ 
+4. On the terminal/command line “cd” the directory of the newly created folder run the following:
+	
+	```
+	python3 -m venv my_venv
+
+	source ./my_venv/bin/activate
+
+	pip3 install -r ./requirements.txt
+
+	python3 app.py
+	```
+
+
+
+
+## Credentials to login
+
+To login as one of our pre-existing users you can use one of the following credentials:
+
+| Email        | Password           
+| ------------- |:-------------:| 
+| ciccio@gmail.com      | password1 |
+| teo@gmail.com      | password2 |
+| deiv@gmail.com      | password3 |
+
+
