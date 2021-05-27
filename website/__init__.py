@@ -36,6 +36,15 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
     login_manager.init_app(app)
+    
+    # Don't have csrf tokens expire (they are invalid after logout)
+    app.config["WTF_CSRF_TIME_LIMIT"] = None
+
+    # Avoid any further csrf tokens expiration
+    app.config["SECURITY_CSRF_COOKIE_REFRESH_EACH_REQUEST"] = False
+
+    # You can't get the cookie until you are logged in.
+    app.config["SECURITY_CSRF_IGNORE_UNAUTH_ENDPOINTS"] = True
     csrf = CSRFProtect()
     csrf.init_app(app)
 
