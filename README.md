@@ -12,19 +12,38 @@ Deivid Bardhi (ID: 17138)
 
 Here’s a quick guide to download and run our application:
 ```
+**macOS**
 git clone https://github.com/francescoopiccoli/Information-Security-Project.git 
 cd Information-Security-Project
-python3 -m venv my_venv
-source ./my_venv/bin/activate
+python3 -m venv my_venv    
+source ./my_venv/bin/activate # Windows 
 pip3 install -r ./requirements.txt 
+
+**Windows**
+git clone https://github.com/francescoopiccoli/Information-Security-Project.git 
+cd Information-Security-Project
+python -m venv my_venv
+my_venv\Scripts\activate.bat
+python -m pip install --upgrade pip
+python -m pip install flask
+pip3 install -r ./requirements.txt 
+
 ```
 choose the branch you want (**secure-version** or **insecure-version**) with: 
 ```
+**macOS**
 git checkout <nameOfTheBranch>
+
+**Windows**
+git switch nameOfTheBranchYouWantToAccess
 ```
 Finally run the application with:
 ```
+**macOS**
 python3 app.py
+
+**Windows**
+python app.py
 ```
 
 
